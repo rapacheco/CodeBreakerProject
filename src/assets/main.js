@@ -9,11 +9,11 @@ function guess() {
     if (!validateInput(input.value)) {
       return false;
     } else {
-      attempt++;
+      attempt.value++;
     }
     if (getResults(input.value)) {
       setMessage("You Win! :)");
-    } else if (!getresults(input.value) && attempt >= 10){
+    } else if (!getresults(input.value) && attempt.value >= 10){
       setMessage("You Lose! :(");
     } else {
       setMessage("Incorrect, try again.");
@@ -21,15 +21,11 @@ function guess() {
 }
 
 function setHiddenFields() {
-  answer.value = Math.random() * 10000;
-  answer.value = Math.floor(answer.value);
-  answer.value = answer.toString();
-  if (answer.value.length != 4) {
-    while (answer.value.length < 4) {
-      answer.value = "0" + answer.value;
-    }
+  answer.value = Math.floor(Math.random() * 10000).toString();
+  while (answer.value.length < 4) {
+    answer.value = "0" + answer.value;
   }
-  attempt = 0;
+  attempt.value = 0;
 }
 
 function setMessage(mes) {
@@ -49,10 +45,10 @@ function getResults(input) {
   var result = '<div class="row"><span class="col-md-6">' + input + '</span><div class="col-md-6">';
   var count = 0;
   for (var i = 0; i < 4; i++) {
-    if (input[i] == answer[i]) {
+    if (input.value[i] == answer.value[i]) {
       result += '<span class="glyphicon glyphicon-ok"></span>';
       count++;
-    } else if (answer.indexOf(input[i]) != -1) {
+    } else if (answer.value.indexOf(input.value[i]) != -1) {
       result += '<span class="glyphicon glyphicon-transfer"></span>';
     } else {
       result += '<span class="glyphicon glyphicon-remove"></span>';
