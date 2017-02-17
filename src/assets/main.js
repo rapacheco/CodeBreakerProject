@@ -21,12 +21,12 @@ function guess() {
 }
 
 function setHiddenFields() {
-  answer = Math.random() * 10000;
-  answer = Math.floor(answer);
-  answer = answer.toString();
-  if (answer.length != 4) {
-    while (answer.length < 4) {
-      answer = "0" + answer;
+  answer.value = Math.random() * 10000;
+  answer.value = Math.floor(answer.value);
+  answer.value = answer.toString();
+  if (answer.value.length != 4) {
+    while (answer.value.length < 4) {
+      answer.value = "0" + answer.value;
     }
   }
   attempt = 0;
@@ -58,7 +58,7 @@ function getResults(input) {
       result += '<span class="glyphicon glyphicon-remove"></span>';
     }
   }
-  result += "</div></div>";
+  result += '</div></div>';
   document.getElementById('results').innerHTML = result;
   if (count == 4) {
     return true;
