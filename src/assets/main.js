@@ -74,13 +74,13 @@ function getResults(input) {
 function showAnswer(result) {
   document.getElementById('code').innerHTML = answer.value;
   if (result) {
-    code.className += " success";
+    code.className += ' success';
   } else {
-    code.className += " failure";
+    code.className += ' failure';
   }
 }
 
 function showReplay() {
-  guessing-div.style.display = none;
-  replay-div.style.display = block;
+  guessing-div.style.display = 'none';
+  replay-div.style.display = 'block';
 }
