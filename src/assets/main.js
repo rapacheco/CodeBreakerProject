@@ -11,6 +11,13 @@ function guess() {
     } else {
       attempt++;
     }
+    if (getResults(input.value)) {
+      setMessage("You Win! :)");
+    } else if (!getresults(input.value) && attempt >= 10){
+      setMessage("You Lose! :(");
+    } else {
+      setMessage("Incorrect, try again.");
+    }
 }
 
 function setHiddenFields() {
@@ -39,16 +46,23 @@ function validateInput(guess) {
 }
 
 function getResults(input) {
-  result = "<div class="row"><span class="col-md-6">" + input + "</span><div class="col-md-6">";
+  var result = '<div class="row"><span class="col-md-6">' + input + '</span><div class="col-md-6">';
+  var count = 0;
   for (var i = 0; i < 4; i++) {
     if (input[i] == answer[i]) {
-      result += "<span class="glyphicon glyphicon-ok"></span>";
+      result += '<span class="glyphicon glyphicon-ok"></span>';
+      count++;
     } else if (answer.indexOf(input[i]) != -1) {
-      result += "<span class="glyphicon glyphicon-transfer"></span>";
+      result += '<span class="glyphicon glyphicon-transfer"></span>';
     } else {
-      result += "<span class="glyphicon glyphicon-remove"></span>";
+      result += '<span class="glyphicon glyphicon-remove"></span>';
     }
   }
   result += "</div></div>";
   document.getElementById('results').innerHTML = result;
+  if (count == 4) {
+    return true;
+  } else {
+    return false;
+  }
 }
